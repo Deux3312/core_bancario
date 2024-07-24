@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Celaque</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,
+            user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content />
+    <meta name="keywords" content>
+    <meta name="author" content="Phoenixcoded" />
+    <!-- Favicon icon -->
+    <link rel="icon" href="plugins/images/Empresas/Celaquewebpeq.ico" type="image/x-icon">
+    <!-- prism css -->
+    <link rel="stylesheet" href="plugins/css/plugins/prism-coy.css">
+    <!-- vendor css -->
+    <link rel="stylesheet" href="plugins/css/style.css">
+    <!--Swal-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!--Swal 2-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+<style>
+     ::-webkit-scrollbar {
+        width: 10px;
+    }
+    /* Track */
+    
+     ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey;
+        border-radius: 10px;
+    }
+    /* Handle */
+    
+     ::-webkit-scrollbar-thumb {
+        background: #0d1f35!important;
+        border-radius: 10px;
+    }
+    /* Handle on hover */
+    
+     ::-webkit-scrollbar-thumb:hover {
+        background: #b30000;
+    }
+    
+    .full_design {
+        width: -webkit-fill-available;
+        min-height: 100vh;
+    }
+</style>
+
+<body>
+    <div class="loader-bg">
+        <div class="loader-track">
+            <div class="loader-fill"></div>
+        </div>
+    </div>
+
+    <nav class="pcoded-navbar theme-horizontal menu-light">
+        <div class="navbar-wrapper container">
+            <div class="navbar-content sidenav-horizontal" id="layout-sidenav">
+                <ul class="nav pcoded-inner-navbar sidenav-inner">
+                    <li class="nav-item pcoded-menu-caption">
+
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link " onclick="change_view('./initial.html')"><span
+                                    class="pcoded-micon"><i class="feather
+                                        icon-home"></i></span><span
+                                    class="pcoded-mtext">Inicio</span></a>
+                    </li>
+                    <li class="nav-item pcoded-hasmenu" id="Mantenimiento">
+                        <a href="#!" class="nav-link "><span
+                                    class="pcoded-micon"><i class="feather
+                                        icon-align-center"></i></span><span
+                                    class="pcoded-mtext">Mantenimiento</span></a>
+                        <ul class="pcoded-submenu">
+                            <li id="bodega"><a href="#" onclick="change_view('./views/view_mantenimiento/tasa.html')">Tasa</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item pcoded-hasmenu" id="Prestamos">
+                        <a href="#" class="nav-link">
+                            <span class="pcoded-micon">
+                                    <i class="feather icon-clipboard"></i>
+                                </span>
+                            <span class="pcoded-mtext">Listado de
+                                    Prestamos</span></a>
+                        <ul class="pcoded-submenu">
+                            <li id="Prestamos_creacion">
+                                <a href="#" onclick="change_view('./views/prestamos/lista_prestamos.html')">Prestamos</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item pcoded-hasmenu" id="Seguridad">
+                        <a href="#!" class="nav-link "><span
+                                    class="pcoded-micon"><i class="feather
+                                        icon-lock"></i></span><span
+                                    class="pcoded-mtext">Seguridad</span></a>
+                        <ul class="pcoded-submenu">
+                            <li><a href="#" onclick="change_view('./views/view_users/usuario.html')">Usuarios</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- [ navigation menu ] end -->
+    <!-- [ Header ] start -->
+    <header class="navbar pcoded-header navbar-expand-lg navbar-light
+            header-dark" style="background-color: #0d1f35!important;">
+        <div class="container">
+            <div class="m-header">
+                <a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
+                <a href="#!" class="b-brand">
+                    <!-- ========   change your logo hear   ============ -->
+                    <img src="plugins/images/logo.png" alt class="logo">
+                    <img src="plugins/images/logo-icon.png" alt class="logo-thumb">
+                </a>
+                <a href="#!" class="mob-toggler">
+                    <i class="feather icon-more-vertical"></i>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li>
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" href="#" data-toggle="dropdown" onclick="cambiar_contra();">
+                                <i class="feather icon-unlock">&nbsp;Cambiar
+                                        Contraseña</i>
+
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="dropdown drp-user" id="demo_bajo">
+                            <a href="#" class="dropdown-toggle" id="navbarDropdown_noti" data-toggle="dropdown">
+                                <span id="usuario_logueado"></span>&nbsp;&nbsp;<i class="feather
+                                        icon-user"></i>
+                            </a>
+                            <div class="dropdown-menu
+                                    dropdown-menu-right
+                                    profile-notification">
+                                <div class="pro-head">
+
+                                    <span id="usuario_logueado1"></span>
+                                    <a href="#" class="dud-logout" title="Logout" onclick="cerrar_sesion();">
+                                        <i class="feather icon-log-out"></i>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="pcoded-main-container">
+        <div class="content-wrapper pb-0">
+            <iframe class="full_design" src="./initial.html" title="iframe_P" id="ifrm_p"></iframe>
+        </div>
+        <div class="modal fade" id="modalcambiarContra" tabindex="-1" role="dialog" aria-labelledby="modalcambiarContraLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <center>
+                            <h5 class="modal-title" id="modalcambiarContraLabel">Cambiar Contraseña
+                            </h5>
+                        </center>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group" id="contrasena_anterior_div">
+                                <label for="recipient-name" class="col-form-label">Contraseña
+                                        Anterior:</label>
+                                <input type="password" class="form-control" id="contrasena_anterior">
+                                <span class="feather icon-eye" id="ver_contrasena_anterior" style="float: right; margin-right:
+                                        15px; margin-top: -29px; position:
+                                        relative; z-index: 2;cursor:
+                                        pointer;" onclick="change_pswd(1);"></span>
+                            </div>
+                            <div class="form-group" id="contrasena_div">
+                                <label for="recipient-name" class="col-form-label">Contraseña
+                                        nueva:</label>
+                                <input type="password" class="form-control" id="contrasena">
+                                <span class="feather icon-eye" id="ver_contrasena_nueva" style="float: right; margin-right:
+                                        15px; margin-top: -29px; position:
+                                        relative; z-index: 2;cursor:
+                                        pointer;" onclick="change_pswd(2);"></span>
+                                <p>Mínimo de caracteres : 8, incluir Mayúscula, número y caracter especial.</p>
+                            </div>
+                            <div class="form-group" id="confirmar_contrasena_div">
+                                <label for="recipient-name" class="col-form-label">Confirmar
+                                        Contraseña:</label>
+                                <input type="password" class="form-control" id="confirmar_contrasena">
+                                <span class="feather icon-eye" id="ver_confirmar_contrasena" style="float: right; margin-right:
+                                        15px; margin-top: -29px; position:
+                                        relative; z-index: 2;cursor:
+                                        pointer;" onclick="change_pswd(3);"></span>
+                            </div>
+                            <div class="form-group">
+                                <center>
+                                    <div style="margin-top: 7px;" id="passstrength"></div>
+                                </center>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn
+                                btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn
+                                btn-primary" id="actualizar_contra">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="plugins/js/vendor-all.min.js"></script>
+    <script src="plugins/js/plugins/bootstrap.min.js"></script>
+    <script src="plugins/js/pcoded.min.js"></script>
+    <!-- prism Js -->
+    <script src="plugins/js/plugins/prism.js"></script>
+    <!--Jquery Cookie-->
+    <script src="./plugins/jquery-cookie-master/src/jquery.cookie.js"></script>
+    <script src="plugins/js/horizontal-menu.js"></script>
+    <script>
+        verificar_sesion();
+
+        (function() {
+            if ($('#layout-sidenav').hasClass('sidenav-horizontal') || window.layoutHelpers.isSmallScreen()) {
+                return;
+            }
+            try {
+                window.layoutHelpers._getSetting("Rtl")
+                window.layoutHelpers.setCollapsed(
+                    localStorage.getItem('layoutCollapsed') === 'true',
+                    false
+                );
+            } catch (e) {}
+        })();
+        $(function() {
+            $('#layout-sidenav').each(function() {
+                new SideNav(this, {
+                    orientation: $(this).hasClass('sidenav-horizontal') ? 'horizontal' : 'vertical'
+                });
+            });
+            $('body').on('click', '.layout-sidenav-toggle', function(e) {
+                e.preventDefault();
+                window.layoutHelpers.toggleCollapsed();
+                if (!window.layoutHelpers.isSmallScreen()) {
+                    try {
+                        localStorage.setItem('layoutCollapsed', String(window.layoutHelpers.isCollapsed()));
+                    } catch (e) {}
+                }
+            });
+        });
+        $(document).ready(function() {
+            $("#pcoded").pcodedmenu({
+                themelayout: 'horizontal',
+                MenuTrigger: 'hover',
+                SubMenuTrigger: 'hover',
+            });
+            $(".sidenav-horizontal-next").removeClass("disabled");
+        });
+        //Creando redireccionamiento del iframe
+        function change_view(url) {
+
+            $("#ifrm_p").attr("src", url);
+
+        }
+
+        function cerrar_sesion() {
+            $.removeCookie('alias');
+            location.href = "./index.html";
+        }
+
+        function verificar_sesion() {
+
+
+            if (typeof $.cookie('alias') === 'undefined' || typeof $.cookie('alias') === '') {
+                $("#Mantenimiento,#Prestamos,#Seguridad").hide()
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Sesión Inactiva, <br> Se le redireccionará al Login',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                //Realizando la limpieza de todos los campos que se han llenado manualmente
+                setTimeout(function() {
+                    $.removeCookie('alias');
+                    $("#Mantenimiento,#Prestamos,#Seguridad").show()
+                    location.href = "./index.html";
+                }, 1500);
+            } else {
+                setTimeout(function() {
+                    verificar_sesion();
+                }, 100);
+            }
+        }
+
+        function cambiar_contra() {
+            $("#modalcambiarContra").modal("show");
+        }
+
+        function change_pswd(campo) {
+            if (campo == 1) {
+                var x = document.getElementById("contrasena_anterior");
+                if (x.type === "password") {
+                    x.type = "text";
+                    $("#ver_contrasena_anterior").removeClass("feather icon-eye");
+                    $("#ver_contrasena_anterior").addClass("feather icon-eye-off");
+                } else {
+                    x.type = "password";
+                    $("#ver_contrasena_anterior").removeClass("feather icon-eye-off");
+                    $("#ver_contrasena_anterior").addClass("feather icon-eye");
+                }
+            } else if (campo == 2) {
+                var x = document.getElementById("contrasena");
+                if (x.type === "password") {
+                    x.type = "text";
+                    $("#ver_contrasena_nueva").removeClass("feather icon-eye");
+                    $("#ver_contrasena_nueva").addClass("feather icon-eye-off");
+                } else {
+                    x.type = "password";
+                    $("#ver_contrasena_nueva").removeClass("feather icon-eye-off");
+                    $("#ver_contrasena_nueva").addClass("feather icon-eye");
+                }
+            } else {
+                var x = document.getElementById("confirmar_contrasena");
+                if (x.type === "password") {
+                    x.type = "text";
+                    $("#ver_confirmar_contrasena").removeClass("feather icon-eye");
+                    $("#ver_confirmar_contrasena").addClass("feather icon-eye-off");
+                } else {
+                    x.type = "password";
+                    $("#ver_confirmar_contrasena").removeClass("feather icon-eye-off");
+                    $("#ver_confirmar_contrasena").addClass("feather icon-eye");
+                }
+            }
+
+        }
+        $("#actualizar_contra").click(function() {
+
+            //Realizando las validaciones de los imputs
+            var apr = 0;
+            //validacioncontraseña vieja
+            if ($("#contrasena_anterior").val() == null || $("#contrasena_anterior").val() == "") {
+                apr = 0;
+                $("#contrasena_anterior_div").addClass("alert alert-danger");
+                return;
+            } else {
+                $("#contrasena_anterior_div").removeClass("alert alert-danger")
+                apr = 1;
+            }
+            //validacion para contra nueva
+            if ($("#contrasena").val() == null || $("#contrasena").val() == "") {
+                apr = 0;
+                $("#contrasena_div").addClass("alert alert-danger");
+                return;
+            } else {
+                $("#contrasena_div").removeClass("alert alert-danger")
+                apr = 1;
+            }
+            //validacion para contra nueva
+            if ($("#confirmar_contrasena").val() == null || $("#confirmar_contrasena").val() == "") {
+                apr = 0;
+                $("#confirmar_contrasena_div").addClass("alert alert-danger");
+                return;
+            } else {
+                $("#confirmar_contrasena_div").removeClass("alert alert-danger")
+                apr = 1;
+            }
+            if (apr == 1) {
+                $.ajax({
+                    type: "POST",
+                    url: "./model/model_usuario/edt_usuario_contrasenia.php",
+                    dataType: "json",
+                    data: {
+                        contrasena_anterior: $("#contrasena_anterior").val(),
+                        contrasena_nueva: $("#contrasena").val()
+                    }
+                })
+
+                .done(function(data) {
+                        if (data != 1) {
+                            Swal.fire({
+                                target: document.getElementById('modalcambiarContra'),
+                                title: 'Error! <br>Contraseña Anterior no coincide',
+                                icon: 'error',
+                                showConfirmButton: true
+                            });
+                            return;
+                        } else {
+                            Swal.fire({
+                                target: document.getElementById('modalcambiarContra'),
+                                icon: 'success',
+                                title: 'Éxito! <br>Contraseña Actualizada exitosamente <br> Redireccioando al Login',
+                                showConfirmButton: false,
+                                timer: 2000,
+                                customClass: {
+                                    container: 'my-swal', // Clase personalizada para el contenedor del swal
+                                },
+                                onOpen: function() {
+                                    $('.my-swal').css('z-index', '9999'); // Establecer z-index alto
+                                }
+                            });
+                            //Realizando la limpieza de todos los campos que se han llenado manualmente
+                            setTimeout(function() {
+                                $.removeCookie('alias');
+                                location.href = "./index.html";
+
+                            }, 2000);
+                        }
+
+                    })
+                    .fail(function(data) {
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Ha ocurrido un error al Actualizar la Contraseña',
+                            icon: 'error',
+                            customClass: {
+                                container: 'my-swal', // Clase personalizada para el contenedor del swal
+                            },
+                            onOpen: function() {
+                                $('.my-swal').css('z-index', '9999'); // Establecer z-index alto
+                            }
+                        });
+
+                    });
+            } else {
+                Swal.fire(
+                    'Advertencia!',
+                    'Complete los campos',
+                    'info'
+                )
+            }
+        });
+        $('#contrasena').keyup(function(e) {
+            var strongRegex = new RegExp("^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
+            var mediumRegex = new RegExp("^(?=.{7,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
+            var enoughRegex = new RegExp("(?=.{6,}).*", "g");
+            if (false == enoughRegex.test($(this).val())) {
+                $("#passstrength").removeClass("alert alert-danger");
+                $("#passstrength").removeClass("alert alert-warning");
+                $("#passstrength").addClass("alert alert-danger");
+                $('#passstrength').css("color", "red");
+                $('#passstrength').html('Contraseña Débil!');
+            } else if (strongRegex.test($(this).val())) {
+                $("#passstrength").removeClass("alert alert-danger");
+                $("#passstrength").removeClass("alert alert-warning");
+                $("#passstrength").addClass("alert alert-success");
+                $('#passstrength').css("color", "green");
+                $('#passstrength').html('Contraseña Válida!');
+                $('#confirmar_contrasena').attr('disabled', false);
+            } else if (mediumRegex.test($(this).val())) {
+                $("#passstrength").removeClass("alert alert-danger");
+                $("#passstrength").removeClass("alert alert-warning");
+                $("#passstrength").addClass("alert alert-warning");
+                $('#passstrength').css("color", "orange");
+                $('#passstrength').html('Contraseña Media!');
+            } else {
+                $("#passstrength").removeClass("alert alert-danger");
+                $("#passstrength").removeClass("alert alert-warning");
+                $("#passstrength").addClass("alert alert-danger");
+                $('#passstrength').css("color", "red");
+                $('#passstrength').html('Contraseña Débil!');
+            }
+            return true;
+        });
+        $('#confirmar_contrasena').keyup(function(e) {
+            var contras = $("#contrasena").val();
+            var contras_confirm = $("#confirmar_contrasena").val();
+            if (contras == contras_confirm) {
+                $('#actualizar_contra').attr('disabled', false);
+                $("#passstrength").html("Contraseñas Coinciden !").css("color", "green");
+                $("#passstrength").removeClass("alert alert-danger");
+                $("#passstrength").removeClass("alert alert-warning");
+                $("#passstrength").addClass("alert alert-success");
+            } else {
+                $('#actualizar_contra').attr('disabled', true);
+                $("#passstrength").removeClass("alert alert-danger");
+                $("#passstrength").removeClass("alert alert-warning");
+                $("#passstrength").removeClass("alert alert-success");
+                $("#passstrength").addClass("alert alert-warning");
+                $("#passstrength").html("Contraseñas No Coinciden !").css("color", "orange");
+            }
+
+        });
+
+        $("#usuario_logueado,#usuario_logueado1").html($.cookie('alias'));
+    </script>
+    <script src="plugins/js/analytics.js"></script>
+
+</body>
+
+</html>

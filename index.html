@@ -1,0 +1,224 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Celaque</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+    <meta name="author" content="Phoenixcoded" />
+    <!-- Favicon icon -->
+    <link rel="icon" href="plugins/images/Empresas/Celaquewebpeq.ico" type="image/x-icon">
+
+    <!-- vendor css -->
+    <link rel="stylesheet" href="plugins/css/style.css">
+    <!--Swal-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!--Swal 2-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
+</head>
+
+<!-- [ auth-signup ] start -->
+<div class="auth-wrapper">
+    <div class="auth-content text-center">
+
+        <div class="card borderless">
+            <div class="row align-items-center text-center">
+                <div class="col-md-12">
+                    <div class="card-body">
+                        <img src="plugins/images/Empresas/Celaqueweb.png" alt="" class="img-fluid mb-4">
+
+                        <hr>
+                        <div class="form-group mb-3" id="Username_div">
+                            <input type="text" class="form-control" id="Username" placeholder="Usuario">
+                        </div>
+
+                        <div class="form-group mb-4" id="Password_div">
+                            <input type="password" class="form-control" id="Password" placeholder="Contraseña">
+                            <span class="feather icon-eye" id="ver_contrasena_nueva" style="float: right; margin-right: 15px; margin-top: -29px; position: relative; z-index: 2;cursor: pointer;" onclick="change_pswd(1);"></span>
+                        </div>
+
+                        <button class="btn btn-primary btn-block mb-4" id="entrar">Acceder</button>
+                        <hr>
+                        <p class="mb-4"><strong>¿Deseas Solicitar un crédito con nosotros?</strong><a href="./crear_prestamo.html" class="btn btn-primary f-w-400" style="color: #FFF;">Solicitar</a></p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- [ auth-signup ] end -->
+
+<!-- Required Js -->
+<script src="plugins/js/vendor-all.min.js"></script>
+<script src="plugins/js/plugins/bootstrap.min.js"></script>
+
+<script src="plugins/js/pcoded.min.js"></script>
+<!--Jquery Cookie-->
+<script src="./plugins/jquery-cookie-master/src/jquery.cookie.js"></script>
+
+<script>
+    $("#entrar").click(function() {
+        var valido = 0;
+        /*realizando las validaciones para los usuarios*/
+        //Validacion para el campo de Usuario
+        if ($("#Username").val() == null || $("#Username").val() == "") {
+            apr = 0;
+            $("#Username_div").addClass("alert alert-danger");
+            // return;
+        } else {
+            $("#Username_div").removeClass("alert alert-danger")
+            apr = 1;
+        }
+        //Validacion para el campo de contraseña
+        if ($("#Password").val() == null || $("#Password").val() == "") {
+            apr = 0;
+            $("#Password_div").addClass("alert alert-danger");
+            //return;
+        } else {
+            $("#Password_div").removeClass("alert alert-danger")
+            apr = 1;
+        }
+        if (apr == 1) {
+            var usuario = $("#Username").val().toUpperCase();
+            var contra = $("#Password").val();
+            $.ajax({
+                    type: "POST",
+                    url: "./model/model_seguridad/autenticacion_usuario.php",
+                    dataType: "json",
+                    data: {
+                        Usuario: usuario,
+                        Contra: contra
+
+                    }
+                })
+                .done(function(data) {
+                    if (data == 1) {
+
+                        $.cookie('alias', usuario);
+
+                        //Realizando la limpieza de todos los campos que se han llenado manualmente
+                        setTimeout(function() {
+                            location.href = "./menu.html";
+                        }, 100);
+                    } else {
+                        Swal.fire(
+                            'Error!',
+                            'Usuario o contraseña incorrectos.',
+                            'error'
+                        )
+                    }
+
+                })
+                .fail(function(data) {
+                    Swal.fire(
+                        'Error!',
+                        'Error a Cargar el Usuario',
+                        'error'
+                    )
+                });
+        } else {
+            Swal.fire(
+                'Advertencia!',
+                'Por favor complete los campos!',
+                'warning'
+            )
+        }
+    });
+    $('input').keyup(function(event) {
+        if (event.which === 13) {
+            var valido = 0;
+            /*realizando las validaciones para los usuarios*/
+            //Validacion para el campo de Usuario
+            if ($("#Username").val() == null || $("#Username").val() == "") {
+                apr = 0;
+                $("#Username_div").addClass("alert alert-danger");
+                return;
+            } else {
+                $("#Username_div").removeClass("alert alert-danger")
+                apr = 1;
+            }
+            //Validacion para el campo de contraseña
+            if ($("#Password").val() == null || $("#Password").val() == "") {
+                apr = 0;
+                $("#Password_div").addClass("alert alert-danger");
+                return;
+            } else {
+                $("#Password_div").removeClass("alert alert-danger")
+                apr = 1;
+            }
+            if (apr == 1) {
+                var usuario = $("#Username").val().toUpperCase();
+                var contra = $("#Password").val();
+                $.ajax({
+                        type: "POST",
+                        url: "./model/model_seguridad/autenticacion_usuario.php",
+                        dataType: "json",
+                        data: {
+                            Usuario: usuario,
+                            Contra: contra
+
+                        }
+                    })
+                    .done(function(data) {
+                        if (data == 1) {
+
+                            $.cookie('alias', usuario);
+
+                            //Realizando la limpieza de todos los campos que se han llenado manualmente
+                            setTimeout(function() {
+                                location.href = "./menu.html";
+                            }, 100);
+                        } else {
+                            Swal.fire(
+                                'Error!',
+                                'Usuario o contraseña incorrectos.',
+                                'error'
+                            )
+                        }
+
+                    })
+                    .fail(function(data) {
+                        Swal.fire(
+                            'Error!',
+                            'Error a Cargar el Usuario',
+                            'error'
+                        )
+                    });
+            } else {
+                Swal.fire(
+                    'Error!',
+                    'Por favor complete los campos!',
+                    'error'
+                )
+            }
+        }
+    });
+
+    function change_pswd(campo) {
+        if (campo == 1) {
+            var x = document.getElementById("Password");
+            if (x.type === "password") {
+                x.type = "text";
+                $("#ver_contrasena_anterior").removeClass("feather icon-eye");
+                $("#ver_contrasena_anterior").addClass("feather icon-eye-off");
+            } else {
+                x.type = "password";
+                $("#ver_contrasena_anterior").removeClass("feather icon-eye-off");
+                $("#ver_contrasena_anterior").addClass("feather icon-eye");
+            }
+        }
+    }
+</script>
+
+</body>
+
+</html>

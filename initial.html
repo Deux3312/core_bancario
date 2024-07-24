@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Celaque</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,
+      user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+    <meta name="author" content="Phoenixcoded" />
+    <!-- Favicon icon -->
+    <link rel="icon" href="plugins/images/Empresas/Celaquewebpeq.ico" type="image/x-icon">
+    <!-- prism css -->
+    <link rel="stylesheet" href="./plugins/css/plugins/prism-coy.css">
+
+    <!-- vendor css -->
+    <link rel="stylesheet" href="./plugins/css/style.css">
+    <!--Swal-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!--Swal 2-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="./plugins/jquery-Autocomplete/jquery-ui.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<style>
+     ::-webkit-scrollbar {
+        display: none;
+    }
+    
+     ::selection {
+        color: #fff;
+        background: #1b558f;
+    }
+    
+    .wrapper {
+        width: 430px;
+        background: #fff;
+        border-radius: 5px;
+        padding: 30px;
+        box-shadow: 7px 7px 12px rgba(0, 0, 0, 0.05);
+    }
+    
+    .wrapper header {
+        color: #1b558f;
+        font-size: 27px;
+        font-weight: 600;
+        text-align: center;
+    }
+    
+    .wrapper form {
+        height: 167px;
+        display: flex;
+        cursor: pointer;
+        margin: 30px 0;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        border-radius: 5px;
+        border: 2px dashed #1b558f;
+    }
+    
+    form :where(i, p) {
+        color: #1b558f;
+    }
+    
+    form i {
+        font-size: 50px;
+    }
+    
+    form p {
+        margin-top: 15px;
+        font-size: 16px;
+    }
+    
+    section .row {
+        margin-bottom: 10px;
+        background: #E9F0FF;
+        list-style: none;
+        padding: 15px 20px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    section .row i {
+        color: #1b558f;
+        font-size: 30px;
+    }
+    
+    section .details span {
+        font-size: 14px;
+    }
+    
+    .progress-area .row .content {
+        width: 100%;
+        margin-left: 15px;
+    }
+    
+    .progress-area .details {
+        display: flex;
+        align-items: center;
+        margin-bottom: 7px;
+        justify-content: space-between;
+    }
+    
+    .progress-area .content .progress-bar {
+        height: 6px;
+        width: 100%;
+        margin-bottom: 4px;
+        background: #fff;
+        border-radius: 30px;
+    }
+    
+    .content .progress-bar .progress {
+        height: 100%;
+        width: 0%;
+        background: #1b558f;
+        border-radius: inherit;
+    }
+    
+    .uploaded-area {
+        max-height: 232px;
+        overflow-y: scroll;
+    }
+    
+    .uploaded-area.onprogress {
+        max-height: 150px;
+    }
+    
+    .uploaded-area::-webkit-scrollbar {
+        width: 0px;
+    }
+    
+    .uploaded-area .row .content {
+        display: flex;
+        align-items: center;
+    }
+    
+    .uploaded-area .row .details {
+        display: flex;
+        margin-left: 15px;
+        flex-direction: column;
+    }
+    
+    .uploaded-area .row .details .size {
+        color: #404040;
+        font-size: 11px;
+    }
+    
+    .uploaded-area i.fa-check {
+        font-size: 16px;
+    }
+    /*Mensajes*/
+    
+    .comment {
+        /*Estilo para los mensajes*/
+    }
+    /*Fin Mensajes*/
+</style>
+
+<body>
+    <!-- [ Pre-loader ] start -->
+    <div class="loader-bg">
+        <div class="loader-track">
+            <div class="loader-fill"></div>
+        </div>
+    </div>
+    <div class="content-wrapper pb-0">
+        <div class="pcoded-wrapper container">
+            <div class="pcoded-content">
+                <div class="pcoded-inner-content">
+                    <div class="main-body">
+                        <div class="page-wrapper">
+                            <div class="page-header">
+                                <div class="page-block">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-12">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container-fluid">
+                                <div class="row justify-content-center">
+                                    <div class="col-xl-8 col-md-10">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row align-items-center justify-content-center">
+                                                    <h3 id="bienvenido_user"></h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row justify-content-center">
+                                    <div class="col-xl-8 col-md-10">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row align-items-center justify-content-center">
+                                                    <div class="col-12" style="text-align: center;">
+                                                        <img src="./plugins/images/Empresas/Celaqueweb.png" class="img-fluid" alt="Celaque">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- [ Main Content ] end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 col-12"></div>
+        </div>
+
+        <div class="row">
+
+
+        </div>
+        <div class="col-md-3 col-md-12">
+        </div>
+    </div>
+
+
+    </div>
+    </div>
+    <!-- [ Main Content ] end -->
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</body>
+
+<!-- Required Js -->
+<script src="./plugins/js/plugins/apexcharts.min.js"></script>
+<script src="./plugins/js/vendor-all.min.js"></script>
+<script src="./plugins/js/plugins/bootstrap.min.js"></script>
+<script src="./plugins/js/pcoded.min.js"></script>
+
+<script src="./plugins/js/plugins/apexcharts.min.js"></script>
+<script src="./plugins/js/pages/chart-apex.js"></script>
+<!-- prism Js -->
+<script src="./plugins/js/plugins/prism.js"></script>
+<script src="./plugins/js/horizontal-menu.js"></script>
+<script src="./plugins/js/horizontal-menu.js"></script>
+<!--AUTOCOMPLETE-->
+<script src="./plugins/jquery-Autocomplete/jquery-ui.js"></script>
+
+
+
+<script src="./plugins/js/vendor-all.min.js"></script>
+<script src="./plugins/js/plugins/bootstrap.min.js"></script>
+<script src="./plugins/js/pcoded.min.js"></script>
+<script src="./plugins/js/pages/dashboard-main.js"></script>
+<!--Jquery Cookie-->
+<script src="./plugins/jquery-cookie-master/src/jquery.cookie.js"></script>
+<script type="text/javascript">
+    verificar_sesion();
+    cargar_forall();
+
+    function cargar_forall() {
+        $("#bienvenido_user").html('Bienvenido <strong>' + $.cookie('alias') + '</strong>');
+
+    }
+
+    function verificar_sesion() {
+        if (typeof $.cookie('alias') === 'undefined' || $.cookie('alias') === '') {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Sesión Inactiva, <br> Se le redireccionará al Login',
+                showConfirmButton: false,
+                timer: 2000
+            });
+
+            //Realizando la limpieza de todos los campos que se han llenado manualmente
+            setTimeout(function() {
+                $.removeCookie('alias');
+                // Obtener la ruta actual
+                var currentPath = window.location.pathname;
+                // Eliminar el último segmento de la ruta para retroceder un directorio
+                var newPath = currentPath.split('/').slice(0, -1).join('/');
+                // Redirigir a la nueva ruta
+                location.href = newPath;
+            }, 1500);
+        } else {
+            // Verificar la sesión nuevamente después de un tiempo
+            setTimeout(function() {
+                verificar_sesion();
+            }, 100);
+        }
+    }
+</script>
+
+</html>

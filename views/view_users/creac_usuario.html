@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Celaque</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,
+      user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+    <meta name="author" content="Phoenixcoded" />
+    <!-- Favicon icon -->
+    <link rel="icon" href="../../plugins/images/favicon.ico" type="image/x-icon">
+
+    <!-- prism css -->
+    <link rel="stylesheet" href="../../plugins/css/plugins/prism-coy.css">
+    <!-- vendor css -->
+    <link rel="stylesheet" href="../../plugins/css/style.css">
+    <!--Swal-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!--Swal 2-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="../../plugins/css/bootstrap.css">
+    <link rel="stylesheet" href="../../plugins/css/dataTables.bootstrap4.min.css">
+
+</head>
+<style>
+     ::-webkit-scrollbar {
+        display: none;
+    }
+</style>
+
+<body>
+    <!-- [ Pre-loader ] start -->
+    <div class="loader-bg">
+        <div class="loader-track">
+            <div class="loader-fill"></div>
+        </div>
+    </div>
+    <div class="content-wrapper pb-0">
+        <div class="pcoded-wrapper container">
+            <div class="pcoded-content">
+                <div class="pcoded-inner-content">
+                    <div class="main-body">
+                        <div class="page-wrapper">
+                            <div class="page-header">
+                                <div class="page-block">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-12">
+                                            <div class="page-header-title">
+                                                <CENTER>
+                                                    <h2 class="m-b-10">Creación de Usuarios
+                                                    </h2>
+                                                </CENTER>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>Usuarios</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group" id="usuario_div">
+                                                        <label class="floating-label" for="usuario">Usuario</label>
+                                                        <input type="email" class="form-control" id="usuario" aria-describedby="usuario" style="text-transform: uppercase" onkeypress="return /[a-zA-Z]/i.test(event.key)">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group" id="estado_div">
+                                                        <label for="exampleFormControlSelect1">Estado</label>
+                                                        <select class="form-control" id="estado">
+                                                          <option value="">SELECCIONE</option>
+                                                          <option value="A">Activo</option>
+                                                          <option value="I">Inactivo</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group" id="nombre_div">
+                                                        <label class="floating-label" for="nombre">Nombre
+                                Completo</label>
+                                                        <input type="text" class="form-control" id="nombre" aria-describedby="emailHelp" onkeypress="return /[a-zA-Z ]/i.test(event.key)">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group" id="correo_div">
+                                                        <label class="floating-label" for="email">Correo
+                                Electrónico</label>
+                                                        <input type="email" class="form-control" data-validation="email" id="correo">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group" id="contrasena_div">
+                                                        <label class="floating-label" for="Text">Contraseña</label>
+                                                        <input type="password" class="form-control" id="contrasena">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <center>
+                                                <a href="./usuario.html" class="btn btn-secondary me-2">Cancelar</a>
+                                                <button type="button" class="btn btn-success me-2" id="procesar_solicitud">Crear</button>
+                                            </center>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Required Js -->
+    <script src="../../plugins/js/vendor-all.min.js"></script>
+    <script src="../../plugins/js/plugins/bootstrap.min.js"></script>
+    <script src="../../plugins/js/pcoded.min.js"></script>
+    <!--Tablas-->
+    <script src="../../plugins/js/jquery.dataTables.min.js"></script>
+    <script src="../../plugins/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+    </script>
+    <!-- prism Js -->
+    <script src="../../plugins/js/plugins/prism.js"></script>
+    <script src="../../plugins/js/horizontal-menu.js"></script>
+    <script>
+        (function() {
+            if ($('#layout-sidenav').hasClass('sidenav-horizontal')) {
+                return;
+            }
+            try {
+                window.layoutHelpers._getSetting("Rtl")
+                window.layoutHelpers.setCollapsed(
+                    localStorage.getItem('layoutCollapsed') === 'true',
+                    false
+                );
+            } catch (e) {}
+        })();
+        $(function() {
+            $('#layout-sidenav').each(function() {
+                new SideNav(this, {
+                    orientation: $(this).hasClass('sidenav-horizontal') ? 'horizontal' : 'vertical'
+                });
+            });
+            $('body').on('click', '.layout-sidenav-toggle', function(e) {
+                e.preventDefault();
+                window.layoutHelpers.toggleCollapsed();
+                if (!window.layoutHelpers.isSmallScreen()) {
+                    try {
+                        localStorage.setItem('layoutCollapsed', String(window.layoutHelpers.isCollapsed()));
+                    } catch (e) {}
+                }
+            });
+        });
+        $(document).ready(function() {
+            $("#pcoded").pcodedmenu({
+                themelayout: 'horizontal',
+                MenuTrigger: 'hover',
+                SubMenuTrigger: 'hover',
+            });
+        });
+    </script>
+    <script src="../../plugins/js/analytics.js"></script>
+    <!--Librerias para Mask Money-->
+    <script src="../../plugins/jquery-maskmoney-master/src/jquery.maskMoney.js" type="text/javascript"></script>
+    <!--Fin Librerias MAsk MOney-->
+    <!--Fin Librerias para Select2-->
+    <script type="text/javascript">
+        //llamado de las funciones
+        var permisos_usuario = [];
+        var n = 0;
+        $("#procesar_solicitud").click(function() {
+            var valido = 0;
+            //validacion de campo lleno para usuario
+            if ($("#usuario").val() == null || $("#usuario").val() == "") {
+                apr = 0;
+                $("#usuario_div").addClass("alert alert-danger");
+                //return;
+            } else {
+                $("#usuario_div").removeClass("alert alert-danger")
+                apr = 1;
+            }
+            //validacion para el campo de estado
+            if ($("#estado").val() == null || $("#estado").val() == "") {
+                apr = 0;
+                $("#estado_div").addClass("alert alert-danger");
+                //return;
+            } else {
+                $("#estado_div").removeClass("alert alert-danger")
+                apr = 1;
+            }
+            //validacion para el campo de nombre
+            if ($("#nombre").val() == null || $("#nombre").val() == "") {
+                apr = 0;
+                $("#nombre_div").addClass("alert alert-danger");
+                //return;
+            } else {
+                $("#nombre_div").removeClass("alert alert-danger")
+                apr = 1;
+            }
+            //validacion para el campo de correo
+            if ($("#correo").val() == null || $("#correo").val() == "") {
+                apr = 0;
+                $("#correo_div").addClass("alert alert-danger");
+                //return;
+            } else {
+                caracteresCorreoValido($("#correo").val());
+                $("#correo_div").removeClass("alert alert-danger")
+                apr = 1;
+            }
+            //validacion para el campo de lugar
+            if ($("#lugar").val() == null || $("#lugar").val() == "") {
+                apr = 0;
+                $("#lugar_div").addClass("alert alert-danger");
+                //return;
+            } else {
+                $("#lugar_div").removeClass("alert alert-danger")
+                apr = 1;
+            }
+            //validacion para el campo de lugar
+            if ($("#contrasena").val() == null || $("#contrasena").val() == "") {
+                apr = 0;
+                $("#contrasena_div").addClass("alert alert-danger");
+                //return;
+            } else {
+                $("#contrasena_div").removeClass("alert alert-danger")
+                apr = 1;
+            }
+            if (apr === 1) {
+                $.ajax({
+                    type: "POST",
+                    url: "../../model/model_usuario/insrt_usuario.php",
+                    dataType: "json",
+                    data: {
+                        usuario: $("#usuario").val(),
+                        estado: $("#estado").val(),
+                        nombre: $("#nombre").val(),
+                        correo: $("#correo").val(),
+                        contrasena: $("#contrasena").val()
+                    }
+                })
+
+                .done(function(data) {
+                        if (data == 1) {
+                            Swal.fire({
+                                    icon: 'success',
+                                    title: 'Éxito! <br>Usuario Creado exitosamente',
+                                    showConfirmButton: false,
+                                    timer: 2000
+                                })
+                                //Realizando la limpieza de todos los campos que se han llenado manualmente
+                            setTimeout(function() {
+                                location.reload();
+                            }, 2000);
+                        } else {
+                            Swal.fire({
+                                icon: 'warning',
+                                title: 'Advertencia! <br> Usuario existe en la Base de Datos',
+                                showConfirmButton: false,
+                                timer: 2000
+                            })
+                            return;
+                        }
+                    })
+                    .fail(function(data) {
+                        Swal.fire(
+                            'Error!',
+                            'Ha ocurrido un error al insertar Usuario',
+                            'error'
+                        )
+                    });
+            } else {
+                Swal.fire(
+                    'Advertencia!',
+                    'Por favor complete todos los campos remarcados<br>son de caracter obligatorio',
+                    'info'
+                )
+                return;
+            }
+
+        });
+        $('form').find('input[type=email]').blur(function() {
+            caracteresCorreoValido($(this).val())
+        });
+        // funcion para validar el correo
+        function caracteresCorreoValido(email) {
+            console.log(email);
+            //var email = $(email).val();
+            var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
+
+            if (caract.test(email) == false) {
+                $("#correo").addClass("alert alert-danger");
+                return false;
+            } else {
+                $("#correo").removeClass("alert alert-danger")
+                    //        $(div).html('');
+                return true;
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Celaque</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,
+      user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+    <meta name="author" content="Phoenixcoded" />
+    <!-- Favicon icon -->
+    <link rel="icon" href="./plugins/images/Empresas/Celaquewebpeq.ico" type="image/x-icon">
+    <!-- prism css -->
+    <link rel="stylesheet" href="./plugins/css/plugins/prism-coy.css">
+
+    <!-- vendor css -->
+    <link rel="stylesheet" href="./plugins/css/style.css">
+    <!--Swal-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!--Swal 2-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="./plugins/jquery-Autocomplete/jquery-ui.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<style>
+     ::-webkit-scrollbar {
+        display: none;
+    }
+    
+     ::selection {
+        color: #fff;
+        background: #1b558f;
+    }
+    
+    .wrapper {
+        width: 430px;
+        background: #fff;
+        border-radius: 5px;
+        padding: 30px;
+        box-shadow: 7px 7px 12px rgba(0, 0, 0, 0.05);
+    }
+    
+    .wrapper header {
+        color: #1b558f;
+        font-size: 27px;
+        font-weight: 600;
+        text-align: center;
+    }
+    
+    .wrapper form {
+        height: 167px;
+        display: flex;
+        cursor: pointer;
+        margin: 30px 0;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        border-radius: 5px;
+        border: 2px dashed #1b558f;
+    }
+    
+    form :where(i, p) {
+        color: #1b558f;
+    }
+    
+    form i {
+        font-size: 50px;
+    }
+    
+    form p {
+        margin-top: 15px;
+        font-size: 16px;
+    }
+    
+    section .row {
+        margin-bottom: 10px;
+        background: #E9F0FF;
+        list-style: none;
+        padding: 15px 20px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    section .row i {
+        color: #1b558f;
+        font-size: 30px;
+    }
+    
+    section .details span {
+        font-size: 14px;
+    }
+    
+    .content-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        min-width: 100%;
+        min-height: 100vh;
+        background: #070f1a;
+        background-image: url("./plugins/images/fondoAtlas.jpg");
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+    }
+    
+    @media (min-width: 1200px) {
+        .content-wrapper .container {
+            max-width: 1140px;
+        }
+    }
+    
+    @media (-ms-high-contrast: none),
+    (-ms-high-contrast: active) {
+        .content-wrapper {
+            display: block;
+            margin: 0 auto;
+        }
+        .content-wrapper>.row {
+            min-height: 100vh;
+        }
+        .content-wrapper>.row>.aut-bg-img {
+            min-height: 100vh;
+        }
+    }
+    
+    .content-wrapper .saprator {
+        position: relative;
+        margin: 8px 0;
+    }
+    
+    .content-wrapper .saprator span {
+        background: #fff;
+        position: relative;
+        padding: 0 10px;
+        z-index: 5;
+        font-size: 20px;
+    }
+    
+    .content-wrapper .saprator:after {
+        content: "";
+        position: absolute;
+        top: 15px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: #e2e5e8;
+        z-index: 1;
+    }
+    
+    .content-wrapper a,
+    .content-wrapper p>a {
+        color: #37474f;
+        font-weight: 600;
+    }
+    
+    .content-wrapper .input-group {
+        background: transparent;
+    }
+    
+    .content-wrapper .card {
+        margin-bottom: 0;
+        padding: 8px;
+        border-radius: 8px;
+    }
+    
+    .content-wrapper .card .card-body {
+        padding: 20px 25px 20px 40px;
+    }
+    
+    @media (-ms-high-contrast: none),
+    (-ms-high-contrast: active) {
+        .content-wrapper .card {
+            display: block;
+        }
+    }
+    
+    .content-wrapper>div {
+        z-index: 5;
+    }
+    
+    .content-wrapper .auth-content {
+        position: relative;
+        padding: 15px;
+        z-index: 5;
+    }
+    
+    .content-wrapper .auth-content:not(.container) {
+        width: 400px;
+    }
+    
+    .content-wrapper .auth-content:not(.container) .card-body {
+        padding: 40px 35px;
+    }
+    
+    @media (-ms-high-contrast: none),
+    (-ms-high-contrast: active) {
+        .content-wrapper .auth-content {
+            margin: 0 auto;
+        }
+    }
+    
+    .content-wrapper .auth-side-img {
+        padding-right: 400px;
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+        justify-content: center;
+    }
+    
+    @media only screen and (max-width: 991px) {
+        .content-wrapper .auth-side-img {
+            display: none;
+        }
+    }
+    
+    .content-wrapper .auth-side-form {
+        position: relative;
+        min-height: 100%;
+        background: #fff;
+        display: inline-flex;
+        align-items: center;
+        left: auto;
+        float: right;
+    }
+    
+    .content-wrapper .auth-side-form>* {
+        position: relative;
+        z-index: 5;
+    }
+    
+    @media only screen and (max-width: 991px) {
+        .content-wrapper .auth-side-form {
+            width: 100%;
+            justify-content: center;
+        }
+        .content-wrapper .auth-side-form .auth-content:not(.container) {
+            max-width: 350px;
+        }
+    }
+    
+    @media (-ms-high-contrast: none),
+    (-ms-high-contrast: active) {
+        .content-wrapper.aut-bg-img .auth-side-form {
+            height: 100vh;
+        }
+    }
+    
+    @media only screen and (max-width: 767px) {
+        .content-wrapper .card .card-body {
+            padding: 30px 15px;
+        }
+    }
+    
+    .content-wrapper.offline {
+        background-image: none;
+    }
+    
+    .content-wrapper.offline h1 {
+        font-size: 87px;
+        font-weight: 700;
+    }
+    
+    .content-wrapper.offline:before {
+        display: none;
+    }
+    
+    .content-wrapper .card-body .carousel-indicators {
+        margin: 15px 0 10px;
+        bottom: 0;
+    }
+    
+    .content-wrapper .card-body .carousel-indicators li {
+        width: 50px;
+        background-color: rgba(26, 188, 156, 0.4);
+        border-radius: 5px;
+        height: 4px;
+    }
+    
+    .content-wrapper .card-body .carousel-indicators li.active {
+        background-color: #070f1a;
+    }
+    
+    .content-wrapper .img-logo-overlay {
+        position: absolute;
+        top: 40px;
+        left: 50px;
+    }
+    
+    .centered {
+        display: block;
+        text-align: center;
+        font-weight: bold;
+    }
+</style>
+
+<body>
+    <!-- [ Pre-loader ] start -->
+    <div class="loader-bg">
+        <div class="loader-track">
+            <div class="loader-fill"></div>
+        </div>
+    </div>
+    <div class="content-wrapper pb-0">
+        <div class="pcoded-wrapper container">
+            <div class="pcoded-content">
+                <div class="pcoded-inner-content">
+                    <div class="main-body">
+                        <div class="page-wrapper">
+                            <div class="page-header">
+                                <div class="page-block">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-12">
+                                            <div class="page-header-title">
+                                                <CENTER>
+                                                    <h2 class="m-b-10" style="color: #fff;">Solicitar Préstamo</h2>
+                                                </CENTER>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- [ Main Content ] start -->
+                            <div class="row">
+                                <div class="col-md-12 grid-margin stretch-card">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <form class="forms-sample">
+                                                <div class="row">
+                                                    <div class="col-md-3 col-12"></div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group" id="nombre_div">
+                                                            <label for="exampleInputName1" class="centered">Nombre del Solicitante</label>
+                                                            <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3 col-12"></div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="form-group col-md-6 col-12" id="emonto_div">
+                                                        <label for="exampleInputName1" class="centered">Monto a Solicitar</label>
+                                                        <input type="text" class="form-control" id="monto" placeholder="1,000,000.00">
+                                                    </div>
+                                                    <div class="form-group col-md-6 col-12" id="plazo_div">
+                                                        <label for="plazo" class="centered">Plazo de Meses</label>
+                                                        <select id="plazo" class="form-control">
+                                                            <option value="">SELECCIONE</option>
+                                                            <option value="12">1 año</option>
+                                                            <option value="24">2 años</option>
+                                                            <option value="36">3 años</option>
+                                                            <option value="48">4 años</option>
+                                                            <option value="60">5 años</option>
+                                                            <option value="72">6 años</option>
+                                                            <option value="84">7 años</option>
+                                                            <option value="96">8 años</option>
+                                                            <option value="108">9 años</option>
+                                                            <option value="120">10 años</option>
+                                                        </select>
+
+                                                    </div>
+
+                                                    <div class="form-group col-md-6 col-12" id="interes_div">
+                                                        <label for="interes" class="centered">Tipo de Préstamo</label>
+                                                        <select id="interes" class="form-control">
+                                                            <option value="">SELECCIONE</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group" id="fecha_div">
+                                                            <label for="exampleInputName1" class="centered">Fecha</label>
+                                                            <input type="text" class="form-control" id="fecha_creacion" readonly="">
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+
+                                                    <div class="col-md-6 col-12">
+                                                        <button type="button" class="btn btn-primary me-2" id="append_table"><strong>Generar Detalle</strong></button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 mt-5">
+                                                    <div class="table-responsive">
+                                                        <h3 class="centered">Detalle de Solicitud Crédito </h3>
+                                                        <div class="col-md-12">
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Pago No.</th>
+                                                                        <th>Fecha Pago</th>
+                                                                        <th>Monto</th>
+                                                                        <th>Estado Pago</th>
+                                                                        <th></th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody id="detalle_tabla">
+                                                                </tbody>
+                                                                <tfoot>
+                                                                    <tr>
+                                                                        <td style="border-bottom-width: 0px !important;">
+                                                                        </td>
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-5">
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4"></div>
+                                                    <div class="col-md-4">
+                                                        <center>
+                                                            <button type="button" class="btn btn-secondary
+                                  me-2" id="cancelar" onclick="regresar();">Cancelar</button>
+                                                            <button type="button" class="btn btn-success
+                                  me-2" id="procesar_solicitud">Crear</button>
+                                                        </center>
+                                                    </div>
+                                                    <div class="col-md-4"></div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- [ Main Content ] end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Required Js -->
+    <script src="./plugins/js/vendor-all.min.js"></script>
+    <script src="./plugins/js/plugins/bootstrap.min.js"></script>
+    <script src="./plugins/js/pcoded.min.js"></script>
+    <!-- prism Js -->
+    <script src="./plugins/js/plugins/prism.js"></script>
+    <script src="./plugins/js/horizontal-menu.js"></script>
+    <!--Jquery Cookie-->
+    <script src="./plugins/jquery-cookie-master/src/jquery.cookie.js"></script>
+    <script src="./plugins/js/horizontal-menu.js"></script>
+    <!--AUTOCOMPLETE-->
+    <script src="./plugins/jquery-Autocomplete/jquery-ui.js"></script>
+
+    <script>
+        (function() {
+            if ($('#layout-sidenav').hasClass('sidenav-horizontal')) {
+                return;
+            }
+            try {
+                window.layoutHelpers._getSetting("Rtl")
+                window.layoutHelpers.setCollapsed(
+                    localStorage.getItem('layoutCollapsed') === 'true',
+                    false
+                );
+            } catch (e) {}
+        })();
+        $(function() {
+            $('#layout-sidenav').each(function() {
+                new SideNav(this, {
+                    orientation: $(this).hasClass('sidenav-horizontal') ? 'horizontal' : 'vertical'
+                });
+            });
+            $('body').on('click', '.layout-sidenav-toggle', function(e) {
+                e.preventDefault();
+                window.layoutHelpers.toggleCollapsed();
+                if (!window.layoutHelpers.isSmallScreen()) {
+                    try {
+                        localStorage.setItem('layoutCollapsed', String(window.layoutHelpers.isCollapsed()));
+                    } catch (e) {}
+                }
+            });
+        });
+        $(document).ready(function() {
+            $("#pcoded").pcodedmenu({
+                themelayout: 'horizontal',
+                MenuTrigger: 'hover',
+                SubMenuTrigger: 'hover',
+            });
+            $("#solicitado_por").val($.cookie('alias'));
+        });
+    </script>
+    <script src="./plugins/js/analytics.js"></script>
+    <!--Librerias para Mask Money-->
+    <script src="./plugins/jquery-maskmoney-master/src/jquery.maskMoney.js" type="text/javascript"></script>
+    <!--Fin Librerias MAsk MOney-->
+    <!--Librerias para Select2-->
+    <link href="./plugins/select2-develop/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="./plugins/select2-develop/dist/js/select2.min.js"></script>
+    <!--Fin Librerias para Select2-->
+    <script type="text/javascript">
+        /*Llamando Funciones Primarias para el cargado*/
+        solicitar_tipo_prestamo();
+
+        $("#monto").maskMoney();
+        $("#procesar_solicitud").attr("disabled", true);
+
+        $("#dirigido_div,#fecha_vencimiento_pago_div").hide();
+        var soli = 0,
+            conteo_detalle = [],
+            detalle_solicitud = [];
+        var n = 0;
+        var fecha = new Date().toLocaleDateString('es', {
+            weekday: "long",
+            year: "numeric",
+            month: "short",
+            day: "numeric"
+        });
+        $("#fecha_creacion").val(fecha);
+        //Append para agregar línea de Detalle para Solicitud.
+        $("#append_table").click(function() {
+            apr = 0;
+            if ($("#nombre").val() == null || $("#nombre").val() == "") {
+                apr = 0;
+                $("#nombre_div").addClass("alert alert-danger");
+            } else {
+                $("#nombre_div").removeClass("alert alert-danger")
+                apr = 1;
+            }
+            if ($("#monto").val() == null || $("#monto").val() == "" || $("#monto").val() == 0) {
+                apr = 0;
+                $("#emonto_div").addClass("alert alert-danger");
+            } else {
+                $("#emonto_div").removeClass("alert alert-danger")
+                apr = 1;
+            }
+            if ($("#plazo").val() == null || $("#plazo").val() == "") {
+                apr = 0;
+                $("#plazo_div").addClass("alert alert-danger");
+            } else {
+                $("#plazo_div").removeClass("alert alert-danger")
+                apr = 1;
+            }
+            if ($("#interes").val() == null || $("#interes").val() == "") {
+                apr = 0;
+                $("#interes_div").addClass("alert alert-danger");
+            } else {
+                $("#interes_div").removeClass("alert alert-danger")
+                apr = 1;
+            }
+
+            //Si completo todos los campos requeridos enviaremos la trama completa
+            if (apr == 1) {
+                $("#detalle_tabla").html('');
+                var fecha_ini = new Date();
+                var plazo = parseFloat($("#plazo").val());
+                var monto_prestamo = parseFloat($("#monto").val().replace(/,/g, ''));
+                var tasa_interes_anual = parseFloat($("#interes").val());
+                var tasa_interes_mensual = tasa_interes_anual / 12 / 100; // Convertir la tasa anual a mensual y a porcentaje
+                var cuota_mensual = monto_prestamo * (tasa_interes_mensual / (1 - Math.pow(1 + tasa_interes_mensual, -plazo)));
+                var cuota_mensual_formateada = cuota_mensual.toLocaleString('es-HN', {
+                    style: 'currency',
+                    currency: 'HNL'
+                });
+
+                for (var x = 1; x <= plazo; x++) {
+                    fecha_ini.setMonth(fecha_ini.getMonth() + 1);
+
+
+
+                    $("#detalle_tabla").append('' +
+                        '<tr id="linea-' + x + '">' +
+                        '<td>' +
+                        '<div class="form-group" id="chk-' + x + '">' +
+                        ' <label for="no" class="centered">' + x + '</label>' +
+                        '</div>' +
+                        '</td>' +
+                        '<td >' +
+                        '<div class="form-group" id="product-' + x + '">' +
+                        '<label for="no" class="centered" id="fecha' + x + '">' + fecha_ini.toLocaleDateString() + '</label>' +
+                        '</div>' +
+                        '</td>' +
+                        '<td  >' +
+                        '<div class="form-group" id="cant-' + x + '">' +
+                        ' <label for="no" class="centered" id="cuota_mensual' + x + '">' + cuota_mensual_formateada + '</label>' +
+                        '</div>' +
+                        '</td>' +
+                        '<td >' +
+                        '<div class="form-group" id="cant-' + x + '">' +
+                        ' <label for="no" class="centered">NUEVO</label>' +
+                        '</div>' +
+                        '</td>' +
+                        '</tr>');
+                    conteo_detalle.push(x);
+                }
+                $("#procesar_solicitud").attr("disabled", false);
+            } else {
+
+                Swal.fire(
+                    'Advertencia!',
+                    'Llene todos los campos, previo a mostrar su detalle de pago',
+                    'warning'
+                )
+
+                $("#procesar_solicitud").attr("disabled", true);
+                return;
+            }
+        });
+        //Click para Procesar la solicitud
+        $("#procesar_solicitud").click(function() {
+            apr = 0;
+            if ($("#nombre").val() == null || $("#nombre").val() == "") {
+                apr = 0;
+                $("#nombre_div").addClass("alert alert-danger");
+            } else {
+                $("#nombre_div").removeClass("alert alert-danger")
+                apr = 1;
+            }
+            if ($("#monto").val() == null || $("#monto").val() == "" || $("#monto").val() == 0) {
+                apr = 0;
+                $("#emonto_div").addClass("alert alert-danger");
+            } else {
+                $("#emonto_div").removeClass("alert alert-danger")
+                apr = 1;
+            }
+            if ($("#plazo").val() == null || $("#plazo").val() == "") {
+                apr = 0;
+                $("#plazo_div").addClass("alert alert-danger");
+            } else {
+                $("#plazo_div").removeClass("alert alert-danger")
+                apr = 1;
+            }
+            if ($("#interes").val() == null || $("#interes").val() == "") {
+                apr = 0;
+                $("#interes_div").addClass("alert alert-danger");
+            } else {
+                $("#interes_div").removeClass("alert alert-danger")
+                apr = 1;
+            }
+            if (apr == 1) {
+
+                //conteo de departamentos
+                detalle_solicitud = detalle_solicitud.filter(Boolean);
+                $.each(conteo_detalle, function(key, value) {
+                    let conteo_detalle_info = {
+                            pago: value,
+                            fecha_pago: $("#fecha" + value).text(),
+                            cuota_mensual: $("#cuota_mensual" + value).text()
+                        }
+                        //realizando push al array permisos_usuario para llenar la data dentro de el
+                    detalle_solicitud.push(conteo_detalle_info);
+
+                });
+                console.log(detalle_solicitud);
+                //realizando peticion Ajax para el procesamiento de la solicitud
+                $.ajax({
+                        type: "POST",
+                        url: "./model/model_prestamo/insrt_prestamo.php",
+                        dataType: "json",
+                        data: {
+                            nombre: $("#nombre").val(),
+                            monto: $("#monto").val(),
+                            fecha: $("#fecha_creacion").val(),
+                            plazo: $("#plazo").val(),
+                            interes: $("#interes").val(),
+                            detalle_solicitud: detalle_solicitud
+                        }
+                    })
+                    .done(function(data) {
+                        Swal.fire({
+                                icon: 'success',
+                                title: 'Éxito! <br> Solicitud Enviada exitosamente',
+                                showConfirmButton: false,
+                                timer: 2000
+                            })
+                            //Realizando la limpieza de todos los campos que se han llenado manualmente
+                        setTimeout(function() {
+                            location.reload();
+                        }, 2000);
+                    })
+                    .fail(function(data) {
+                        Swal.fire(
+                            'Error!',
+                            'Ha ocurrido un error al procesar su Solicitud',
+                            'error'
+                        )
+                    });
+            } else {
+                Swal.fire(
+                    'Advertencia!',
+                    'Por favor, complete los campos obligatorios',
+                    'info'
+                )
+            }
+        });
+
+        function solicitar_tipo_prestamo() {
+            $.ajax({
+                type: "POST",
+                url: "./model/model_prestamo/data_prestamo.php",
+                dataType: "json",
+                data: {
+                    Estado: 3
+                }
+            })
+
+            .done(function(data) {
+                    $("#interes").html('<option value="">SELECCIONE</option>')
+                    for (let i = 0; i < data.length; i++) {
+                        $("#interes").append('<option value="' + data[i]["tasa"] + '">' + data[i]["tipo_prestamo"] + ' - ' + data[i]["tasa"] + '% Interés</option>');
+                    }
+                })
+                .fail(function() {
+                    Swal.fire(
+                        'Error!',
+                        'Ha ocurrido un error al procesar las tasas',
+                        'error'
+                    )
+                });
+        }
+
+        function regresar() {
+            location.href = "./index.html";
+        }
+    </script>
+</body>
+
+</html>
